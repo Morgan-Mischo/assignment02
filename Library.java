@@ -220,6 +220,7 @@ public class Library {
 		for (int i=0; i < library.size() - 1; i++)
 		{
 			//String == null?
+			//New Comment
 			if (this.library.get(i).getHolder() == holder)
 			{
 				this.library.get(i).checkBookIn(); 
