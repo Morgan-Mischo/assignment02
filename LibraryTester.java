@@ -15,7 +15,7 @@ import java.util.ArrayList;
 /**
  * This class contains tests for Library.
  * 
- * @author Erin Parker and ??
+ * @author Erin Parker, Casey Rand, and Morgan Mischo
  * @version January 16, 2019
  */
 public class LibraryTester {
@@ -33,7 +33,6 @@ public class LibraryTester {
 
 		mediumLib = new Library();
 		mediumLib.addAll("src/assign02/Mushroom_Publishing.txt");
-		// FILL IN -- extend this tester to consider a medium-size library
 	}
 
 	@Test
@@ -63,6 +62,38 @@ public class LibraryTester {
 		assertFalse(emptyLib.checkin("Jane Doe"));
 	}
 
+	@Test
+	public void testMediumLibraryLookupISBN() {
+		assertNull(mediumLib.lookup(9980330351690L));
+	}
+	
+	@Test
+	public void testMediumLibraryLookupHolder() {
+		mediumLib.checkout(9781843190004L, "Jane Doe", 1, 1, 2008);
+		ArrayList<LibraryBook> booksCheckedOut = mediumLib.lookup("Jane Doe");
+		
+		assertNotNull(booksCheckedOut);
+		assertEquals(1, booksCheckedOut.size());
+		assertEquals(new Book(9781843190004L, "Moyra Caldecott", "Weapons of the Wolfhound"), booksCheckedOut.get(0));
+		assertEquals("Jane Doe", booksCheckedOut.get(0).getHolder());
+	}
+
+	@Test
+	public void testMediumLibraryCheckout() {
+		assertTrue(mediumLib.checkout(9781843190004L, "Jane Doe", 1, 1, 2008));
+	}
+
+	@Test
+	public void testMediumLibraryCheckinISBN() {
+		mediumLib.checkout(9781843190004L, "Jane Doe", 1, 1, 2008);
+		assertTrue(mediumLib.checkin(9781843190004L));
+	}
+
+	@Test
+	public void testMediumLibraryCheckinHolder() {
+		assertFalse(mediumLib.checkin("Jane Doe"));
+	}
+	
 	@Test
 	public void testSmallLibraryLookupISBN() {
 		assertNull(smallLib.lookup(9780330351690L));
