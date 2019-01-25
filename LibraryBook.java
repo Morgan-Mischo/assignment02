@@ -1,4 +1,8 @@
 package assign02;
+/**
+ * This class represents a library book, which contains a holderName and a dueDate which are dependent on whether or not the book is checked out
+ * @author Casey Rand and Morgan Mischo
+ */
 
 import java.util.GregorianCalendar;
 
